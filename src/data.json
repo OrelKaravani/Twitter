@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "id": "",
+      "date": null,
+      "text": "Hello World",
+      "likes": 0,
+      "commentsId": [ 123,24453,12312,23123 ]
+    }
+  ],
+  "comment": [
+    {
+      "id": "",
+      "date": null,
+      "text": "Cool post",
+      "secondaryCommentId": 12365,
+      "likes": 0
+    }
+  ]
+}
