@@ -19,7 +19,8 @@ class Post extends Component {
 
                     </CardContent>
                     <CardActions>
-                        <TwitterFooter id={this.props.post.id} likes={this.props.post.likes} />
+                        <TwitterFooter id={this.props.post.id} likes={this.props.post.likes}
+                                        commentAllowed/>
 
                     </CardActions>
                 </Card>

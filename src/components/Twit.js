@@ -38,7 +38,8 @@ class TwitPost extends Component {
     }
 
     handleClick (){
-        this.props.addPost(this.state.post)
+        if (this.state.post !=="")
+            this.props.addPost(this.state.post)
     }
 
     render() {
