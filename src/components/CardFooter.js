@@ -5,12 +5,13 @@ import Button from "@material-ui/core/es/Button/Button";
 import Comment from "@material-ui/icons/Comment"
 import Delete from "@material-ui/icons/Delete";
 
-import {deletePost} from "../actions/PostActions";
+import {addLikePost, deletePost} from "../actions/PostActions";
 import {connect} from "react-redux";
 
 function mapDispatchToProps (dispatch){
     return {
-        deletePostId: postId => dispatch(deletePost(postId))
+        deletePostId: postId => dispatch(deletePost(postId)),
+        addLike: postId => dispatch(addLikePost(postId))
     }
 }
 
@@ -29,7 +30,7 @@ class CardFooter extends Component {
     }
 
     handleLike(){
-        console.log("Like was given");
+        this.props.addLike(this.props.id);
     }
 
     handleDeletePost(){
@@ -39,6 +40,7 @@ class CardFooter extends Component {
     render() {
         return (
             <div>
+                <span> {this.props.likes}</span>
                 <Button onClick={this.handleLike}>
                     <ThumbUp />
                 </Button>
