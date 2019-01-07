@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5f53a02f-ec6c-41b8-aa8e-8f48dff57054" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CardFooter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardFooter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PostsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PostsList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Twit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Twit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/CommentReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/CommentReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/Store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/Store.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -170,7 +164,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="260" />
     <option name="y" value="20" />
     <option name="width" value="1400" />
@@ -268,11 +262,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26554000" />
+    <option name="totallyTimeSpent" value="28180000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1507139" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -287,7 +280,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.20677966" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.24067797" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
