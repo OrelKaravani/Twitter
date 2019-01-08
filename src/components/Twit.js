@@ -10,7 +10,7 @@ import Button from "@material-ui/core/es/Button/Button";
 
 import "./Twit.css"
 
-import {addPost} from "../actions/PostActions"
+import {addPost} from "../actions/TwitterActions"
 
 function mapDispatchToProps (dispatch) {
     return {

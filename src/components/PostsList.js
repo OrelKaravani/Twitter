@@ -5,7 +5,7 @@ import Post from "./Post"
 import "./PostsToShow.css"
 
 const mapStateToProps = state => {
-    return {posts: state.postReducer.posts}
+    return {posts: state.posts}
 }
 
 const postsToShow = ({ posts }) => (

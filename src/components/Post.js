@@ -5,6 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 
 import TwitterFooter from "./CardFooter";
+import CommentsLists from "./CommentsLists";
 
 class Post extends Component {
 
@@ -23,6 +24,7 @@ class Post extends Component {
                                         commentAllowed/>
 
                     </CardActions>
+                    <CommentsLists commentsId={this.props.post.comments}/>
                 </Card>
             </div>
         )

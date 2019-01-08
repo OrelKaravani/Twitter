@@ -8,15 +8,13 @@ import Input from "@material-ui/core/es/Input/Input";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from '@material-ui/icons/Add';
 
-import {addLikePost, deletePost} from "../actions/PostActions";
 import {connect} from "react-redux";
-import {addComment} from "../actions/CommentActions";
+import {addComment, addLike} from "../actions/TwitterActions";
 
 function mapDispatchToProps (dispatch){
     return {
-        deletePostId: postId => dispatch(deletePost(postId)),
-        addLike: postId => dispatch(addLikePost(postId)),
-        addComment: postId => dispatch(addComment(postId))
+        addComment: (postId, text) => dispatch(addComment({postId: postId, text: text})),
+        addLike: objectId => dispatch(addLike(objectId))
     }
 }
 
@@ -29,6 +27,7 @@ class CardFooter extends Component {
         this.handleAddNewComment = this.handleAddNewComment.bind(this);
         this.handleLike = this.handleLike.bind(this);
         this.handleDeletePost = this.handleDeletePost.bind(this);
+        this.handleChangeText = this.handleChangeText.bind(this);
 
         this.state = {
             newComment: false,
@@ -36,9 +35,15 @@ class CardFooter extends Component {
         }
     }
 
+    handleChangeText(event){
+        this.setState({newCommentText :event.target.value});
+    }
+
     handleAddComment(){
-        this.setState({ newComment: false });
-        this.props.addComment(this.props.id);
+        if (this.state.newCommentText !== ""){
+            this.setState({ newComment: false });
+            this.props.addComment(this.props.id, this.state.newCommentText);
+        }
     }
 
     handleAddNewComment(){
@@ -58,7 +63,7 @@ class CardFooter extends Component {
         if (this.props.commentAllowed && this.state.newComment)
             return (
                 <div>
-                    <Input id="newCommentText" type="text" placeholder="Comment..." />
+                    <Input id="newCommentText" type="text" placeholder="Comment..." onChange={this.handleChangeText}/>
                     <Fab color="primary" size="small">
                         <AddIcon onClick={this.handleAddComment}/>
                     </Fab>

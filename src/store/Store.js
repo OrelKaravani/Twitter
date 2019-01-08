@@ -1,8 +1,8 @@
-import {combineReducers, createStore} from "redux";
-import postReducer from "../reducers/PostReducer";
-import commentReducer from "../reducers/CommentReducer";
+import {createStore} from "redux";
+import twitterReducer from "../reducers/TwitterReducer";
 
-const rootReducer = combineReducers({postReducer, commentReducer});
-const store =  createStore(rootReducer);
+const store =  createStore(twitterReducer);
+
+window.store = store;
 
 export default store;
