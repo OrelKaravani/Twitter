@@ -1,4 +1,4 @@
-import React , {Component} from "react"
+import React, {Component} from "react"
 
 import ThumbUp from "@material-ui/icons/ThumbUp"
 import Button from "@material-ui/core/es/Button/Button";
@@ -9,18 +9,19 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from '@material-ui/icons/Add';
 
 import {connect} from "react-redux";
-import {addComment, addLike} from "../actions/TwitterActions";
+import {addComment, addCommentToComment, addLike} from "../actions/TwitterActions";
 
-function mapDispatchToProps (dispatch){
+function mapDispatchToProps(dispatch) {
     return {
         addComment: (postId, text) => dispatch(addComment({postId: postId, text: text})),
-        addLike: objectId => dispatch(addLike(objectId))
+        addLike: objectId => dispatch(addLike(objectId)),
+        addCommentToComment: (commentId, text) => dispatch(addCommentToComment({commentId: commentId, text: text}))
     }
 }
 
 class CardFooter extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.handleAddComment = this.handleAddComment.bind(this);
@@ -35,32 +36,32 @@ class CardFooter extends Component {
         }
     }
 
-    handleChangeText(event){
-        this.setState({newCommentText :event.target.value});
+    handleChangeText(event) {
+        this.setState({newCommentText: event.target.value});
     }
 
-    handleAddComment(){
-        if (this.state.newCommentText !== ""){
-            this.setState({ newComment: false });
-            this.props.addComment(this.props.id, this.state.newCommentText);
+    handleAddComment() {
+        if (this.state.newCommentText !== "") {
+            this.setState({newComment: false});
+            this.props.isPost ? this.props.addComment(this.props.id, this.state.newCommentText) : this.props.addCommentToComment(this.props.id, this.state.newCommentText);
         }
     }
 
-    handleAddNewComment(){
-        this.setState({ newComment: !this.state.newComment });
+    handleAddNewComment() {
+        this.setState({newComment: !this.state.newComment});
     }
 
-    handleLike(){
+    handleLike() {
         this.props.addLike(this.props.id);
     }
 
-    handleDeletePost(){
+    handleDeletePost() {
         this.props.deletePostId(this.props.id);
     }
 
-    renderNewComment(){
+    renderNewComment() {
 
-        if (this.props.commentAllowed && this.state.newComment)
+        if (this.state.newComment)
             return (
                 <div>
                     <Input id="newCommentText" type="text" placeholder="Comment..." onChange={this.handleChangeText}/>
@@ -79,7 +80,7 @@ class CardFooter extends Component {
                 <div>
                     <span> {this.props.likes}</span>
                     <Button onClick={this.handleLike}>
-                        <ThumbUp />
+                        <ThumbUp/>
                     </Button>
 
                     <Button onClick={this.handleAddNewComment}>

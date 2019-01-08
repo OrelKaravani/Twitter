@@ -9,19 +9,19 @@ import CommentsLists from "./CommentsLists";
 
 class Post extends Component {
 
-    render (){
+    render() {
         return (
             <div className="p-2">
-                <Card >
+                <Card>
                     <CardContent>
-                        <Typography color="textPrimary" >
+                        <Typography color="textPrimary">
                             {this.props.post.text}
                         </Typography>
 
                     </CardContent>
                     <CardActions>
                         <TwitterFooter id={this.props.post.id} likes={this.props.post.likes}
-                                        commentAllowed/>
+                                       isPost/>
 
                     </CardActions>
                     <CommentsLists commentsId={this.props.post.comments}/>

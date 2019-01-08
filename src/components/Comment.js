@@ -21,7 +21,14 @@ const Comment = ({comment}) => (
 
             <CardActions>
                 <TwitterFooter id={comment.id} likes={comment.likes}
-                               commentAllowed/>
+                               isPost={false}/>
+                <div>
+                    <CardContent>
+                        <Typography>
+                            {comment.comment}
+                        </Typography>
+                    </CardContent>
+                </div>
             </CardActions>
         </Card>
     </div>
