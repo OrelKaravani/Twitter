@@ -11,6 +11,10 @@ import AddIcon from '@material-ui/icons/Add';
 import {connect} from "react-redux";
 import {addComment, addCommentToComment, addLike} from "../actions/TwitterActions";
 
+const likeStyle = {
+    marginRight: '10px'
+};
+
 function mapDispatchToProps(dispatch) {
     return {
         addComment: (postId, text) => dispatch(addComment({postId: postId, text: text})),
@@ -72,20 +76,35 @@ class CardFooter extends Component {
             )
     }
 
+    renderCommentButton() {
+        if (!this.props.isSubComment) {
+            return (
+                <Button onClick={this.handleAddNewComment}>
+                    <Comment/>
+                </Button>
+            )
+        }
+    }
+
+    renderLikeButton() {
+        if (!this.props.isSubComment)
+            return (
+                <Button onClick={this.handleLike}>
+                    <span style={likeStyle}> {this.props.likes}</span>
+                    <ThumbUp/>
+                </Button>
+            )
+    }
 
     render() {
 
         return (
             <div>
                 <div>
-                    <span> {this.props.likes}</span>
-                    <Button onClick={this.handleLike}>
-                        <ThumbUp/>
-                    </Button>
 
-                    <Button onClick={this.handleAddNewComment}>
-                        <Comment/>
-                    </Button>
+                    {this.renderLikeButton()}
+
+                    {this.renderCommentButton()}
 
                     <Button onClick={this.handleDeletePost}>
                         <Delete/>
