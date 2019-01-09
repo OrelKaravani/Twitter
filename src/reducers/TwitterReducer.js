@@ -1,5 +1,5 @@
 import uuidv1 from "uuid";
-import {ADD_COMMENT, ADD_COMMENT_COMMENT, ADD_LIKE, ADD_POST} from "../actions/Types";
+import {ADD_COMMENT, ADD_COMMENT_COMMENT, ADD_LIKE, ADD_POST, DELETE_OBJECT} from "../actions/Types";
 import comments from "./miniCommentReducer";
 import posts from "./miniPostReducer";
 
@@ -34,6 +34,13 @@ function twitterReducer(state = initialState, action) {
             return {
                 posts: state.posts,
                 comments: comments(state, action)
+            };
+
+        case DELETE_OBJECT:
+            return {
+                comments: comments(state, action),
+                posts: posts(state, action)
+
             }
 
         default:

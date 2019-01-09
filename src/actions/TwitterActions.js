@@ -1,4 +1,4 @@
-import {ADD_COMMENT, ADD_COMMENT_COMMENT, ADD_LIKE, ADD_POST} from "./Types";
+import {ADD_COMMENT, ADD_COMMENT_COMMENT, ADD_LIKE, ADD_POST, DELETE_OBJECT} from "./Types";
 
 export const addPost = payload => {
     return {type: ADD_POST, payload}
@@ -15,3 +15,7 @@ export const addCommentToComment = payload => {
 export const addLike = payload => {
     return {type: ADD_LIKE, payload}
 };
+
+export const deleteObject = payload => {
+    return {type: DELETE_OBJECT, payload}
+}

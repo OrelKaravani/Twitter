@@ -1,17 +1,18 @@
-import React, {Component} from "react"
+import React, {Component} from "react";
 
-import ThumbUp from "@material-ui/icons/ThumbUp"
+import ThumbUp from "@material-ui/icons/ThumbUp";
 import Button from "@material-ui/core/es/Button/Button";
-import Comment from "@material-ui/icons/Comment"
+import Comment from "@material-ui/icons/Comment";
 import Delete from "@material-ui/icons/Delete";
 import Input from "@material-ui/core/es/Input/Input";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from '@material-ui/icons/Add';
 
 import {connect} from "react-redux";
-import {addComment, addCommentToComment, addLike} from "../actions/TwitterActions";
+import {addComment, addCommentToComment, addLike, deleteObject} from "../actions/TwitterActions";
+import {COMMENT, COMMENT_OF_COMMENT, POST} from "../actions/Types";
 
-const likeStyle = {
+const likeBtnStyle = {
     marginRight: '10px'
 };
 
@@ -19,7 +20,8 @@ function mapDispatchToProps(dispatch) {
     return {
         addComment: (postId, text) => dispatch(addComment({postId: postId, text: text})),
         addLike: objectId => dispatch(addLike(objectId)),
-        addCommentToComment: (commentId, text) => dispatch(addCommentToComment({commentId: commentId, text: text}))
+        addCommentToComment: (commentId, text) => dispatch(addCommentToComment({commentId: commentId, text: text})),
+        deleteObject: (objectId, type) => dispatch(deleteObject({objectId: objectId, type: type}))
     }
 }
 
@@ -31,7 +33,7 @@ class CardFooter extends Component {
         this.handleAddComment = this.handleAddComment.bind(this);
         this.handleAddNewComment = this.handleAddNewComment.bind(this);
         this.handleLike = this.handleLike.bind(this);
-        this.handleDeletePost = this.handleDeletePost.bind(this);
+        this.handleDeleteObject = this.handleDeleteObject.bind(this);
         this.handleChangeText = this.handleChangeText.bind(this);
 
         this.state = {
@@ -59,8 +61,9 @@ class CardFooter extends Component {
         this.props.addLike(this.props.id);
     }
 
-    handleDeletePost() {
-        this.props.deletePostId(this.props.id);
+    handleDeleteObject() {
+        const type = this.props.isPost ? POST : this.props.isSubComment ? COMMENT_OF_COMMENT : COMMENT;
+        this.props.deleteObject(this.props.id, type);
     }
 
     renderNewComment() {
@@ -90,7 +93,7 @@ class CardFooter extends Component {
         if (!this.props.isSubComment)
             return (
                 <Button onClick={this.handleLike}>
-                    <span style={likeStyle}> {this.props.likes}</span>
+                    <span style={likeBtnStyle}> {this.props.likes}</span>
                     <ThumbUp/>
                 </Button>
             )
@@ -106,7 +109,7 @@ class CardFooter extends Component {
 
                     {this.renderCommentButton()}
 
-                    <Button onClick={this.handleDeletePost}>
+                    <Button onClick={this.handleDeleteObject}>
                         <Delete/>
                     </Button>
                 </div>

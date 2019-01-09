@@ -1,5 +1,5 @@
 import uuidv1 from "uuid";
-import {ADD_COMMENT, ADD_LIKE, ADD_POST} from "../actions/Types";
+import {ADD_COMMENT, ADD_LIKE, ADD_POST, COMMENT, DELETE_OBJECT, POST} from "../actions/Types";
 
 /** logic action on posts **/
 const posts = (state, action) => {
@@ -17,8 +17,6 @@ const posts = (state, action) => {
                 else
                     return post;
             });
-        default:
-            return [...state.posts];
 
         case ADD_COMMENT:
             return state.posts.map(post => {
@@ -29,7 +27,40 @@ const posts = (state, action) => {
                         ...post,
                         comments: post.comments.concat(action.payload.commentId)
                     }
-            })
+            });
+
+        case DELETE_OBJECT:
+            return deletePosts(state, action.payload.type, action.payload.objectId);
+
+        default:
+            return state.posts;
+
+
+    }
+};
+
+const deletePosts = (state, type, objectId) => {
+    switch (type) {
+        case POST:
+            return state.posts.filter(post => {
+                return post.id !== objectId;
+            });
+
+        case COMMENT:
+            return state.posts.map(post => {
+                if (post.comments.includes(objectId))
+                    return {
+                        ...post,
+                        comments: post.comments.filter(id => {
+                            return id !== objectId
+                        })
+                    };
+                else
+                    return post;
+            });
+
+        default:
+            return state.posts;
     }
 };
 

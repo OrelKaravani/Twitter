@@ -1,4 +1,4 @@
-import {ADD_COMMENT, ADD_COMMENT_COMMENT, ADD_LIKE} from "../actions/Types";
+import {ADD_COMMENT, ADD_COMMENT_COMMENT, ADD_LIKE, COMMENT, DELETE_OBJECT, POST} from "../actions/Types";
 
 /** logic action on comments **/
 const comments = (state, action) => {
@@ -33,9 +33,39 @@ const comments = (state, action) => {
                     return comment;
             });
 
+        case DELETE_OBJECT:
+            return deleteComments(state, action.payload.type, action.payload.objectId);
+
         default:
-            return [...state.comments];
+            return state.comments;
     }
 };
+
+const deleteComments = (state, type, objectId) => {
+    switch (type) {
+        case POST:
+            const linkedComments = getLinkedCommentsToPost(state.posts, objectId);
+            return state.comments.filter(comment => {
+                return !linkedComments.includes(comment.id);
+            });
+
+        case COMMENT:
+            return state.comments.filter(comment => {
+               return comment.id !== objectId;
+            });
+
+        default:
+            return state.comments;
+    }
+};
+
+const getLinkedCommentsToPost = (posts, postId) => {
+
+    const post =  posts.find(post => {
+        return post.id === postId
+    });
+
+    return post.comments;
+}
 
 export default comments;
