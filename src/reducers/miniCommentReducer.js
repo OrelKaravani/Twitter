@@ -1,4 +1,12 @@
-import {ADD_COMMENT, ADD_COMMENT_COMMENT, ADD_LIKE, COMMENT, DELETE_OBJECT, POST} from "../actions/Types";
+import {
+    ADD_COMMENT,
+    ADD_COMMENT_COMMENT,
+    ADD_LIKE,
+    COMMENT,
+    COMMENT_OF_COMMENT,
+    DELETE_OBJECT,
+    POST
+} from "../actions/Types";
 
 /** logic action on comments **/
 const comments = (state, action) => {
@@ -52,6 +60,17 @@ const deleteComments = (state, type, objectId) => {
         case COMMENT:
             return state.comments.filter(comment => {
                return comment.id !== objectId;
+            });
+
+        case COMMENT_OF_COMMENT:
+            return state.comments.map(comment => {
+                if (comment.id === objectId)
+                    return{
+                    ...comment,
+                        comment: null
+                    };
+                else
+                    return comment;
             });
 
         default:
